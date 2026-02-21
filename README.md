@@ -9,31 +9,16 @@ Using `kitten-tts-mini` (80M) model by default, the model used can be configured
 * OpenAI-compatible /v1/audio/speech endpoint
 * Multiple output formats: WAV, MP3, OGG
 
-## Configuration
-
-You can specify the KittenTTS model to use by setting the `KITTEN_TTS_MODEL` environment variable. Available models:
-
-* `KittenML/kitten-tts-mini-0.8` (default, 80M parameters)
-* `KittenML/kitten-tts-micro-0.8`
-* `KittenML/kitten-tts-nano-0.8`
-* `KittenML/kitten-tts-nano-0.8-int8`
-
-Example:
-
-```bash
-docker run -e KITTEN_TTS_MODEL=KittenML/kitten-tts-nano-0.8 -p 8000:8000 kittentts-api
-```
-
 ## Quick Start
 
 ### Using Docker
 
 ```bash
 # Pull the image
-docker pull ghcr.io/<your-username>/kittentts-api:latest
+docker pull ghcr.io/ktos/kittentts-api:latest
 
 # Run the container
-docker run -d -p 8000:8000 ghcr.io/<your-username>/kittentts-api:latest
+docker run -d -p 8000:8000 ghcr.io/ktos/kittentts-api:latest
 ```
 
 ## API Usage
@@ -79,6 +64,21 @@ with open("output.mp3", "wb") as f:
 | --------------------- | ------------------------------------------------- |
 | POST /v1/audio/speech | Generate speech audio                             |
 | GET /v1/models        | List available models (`tts-1` for compatibility) |
+
+## Configuration
+
+You can specify the KittenTTS model to use by setting the `KITTEN_TTS_MODEL` environment variable. Available models:
+
+* `KittenML/kitten-tts-mini-0.8` (default, 80M parameters)
+* `KittenML/kitten-tts-micro-0.8`
+* `KittenML/kitten-tts-nano-0.8`
+* `KittenML/kitten-tts-nano-0.8-int8`
+
+Example:
+
+```bash
+docker run -e KITTEN_TTS_MODEL=KittenML/kitten-tts-nano-0.8 -p 8000:8000 kittentts-api
+```
 
 ## Development
 
