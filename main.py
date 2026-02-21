@@ -141,6 +141,19 @@ async def list_models():
     }
 
 
+@app.get("/v1/voices")
+async def list_voices():
+    """List available voices."""
+    voices = list(VOICE_MAPPING.keys())
+    return {
+        "object": "list",
+        "data": [
+            {"id": voice, "name": voice.title(), "object": "voice"}
+            for voice in voices
+        ]
+    }
+
+
 @app.get("/health")
 async def health_check():
     """Health check endpoint."""
