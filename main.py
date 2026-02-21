@@ -103,7 +103,8 @@ async def create_speech(request: TTSRequest):
 
     try:
         # Generate audio
-        audio = m.generate(request.input, voice=mapped_voice)
+        audio = m.generate(request.input, voice=mapped_voice,
+                           speed=request.speed)
 
         # Convert to requested format
         audio_buffer, media_type, extension = convert_audio(
