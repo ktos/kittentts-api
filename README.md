@@ -2,12 +2,27 @@
 
 OpenAI-compatible TTS API built with FastAPI and the great (and fast and tiny) [KittenTTS](https://github.com/KittenML/KittenTTS).
 
-Using `kitten-tts-mini` (80M) model, downloaded on startup.
+Using `kitten-tts-mini` (80M) model by default, the model used can be configured via environment variable. Model is automatically downloaded and loaded on startup.
 
 ## Features
 
 * OpenAI-compatible /v1/audio/speech endpoint
 * Multiple output formats: WAV, MP3, OGG
+
+## Configuration
+
+You can specify the KittenTTS model to use by setting the `KITTEN_TTS_MODEL` environment variable. Available models:
+
+* `KittenML/kitten-tts-mini-0.8` (default, 80M parameters)
+* `KittenML/kitten-tts-micro-0.8`
+* `KittenML/kitten-tts-nano-0.8`
+* `KittenML/kitten-tts-nano-0.8-int8`
+
+Example:
+
+```bash
+docker run -e KITTEN_TTS_MODEL=KittenML/kitten-tts-nano-0.8 -p 8000:8000 kittentts-api
+```
 
 ## Quick Start
 
