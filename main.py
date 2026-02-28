@@ -47,6 +47,7 @@ class TTSRequest(BaseModel):
     voice: str = DEFAULT_VOICE
     response_format: str = "wav"
     speed: float = 1.0
+    stream_format: str = "audio"
 
 
 def convert_audio(audio_data, output_format: str, sample_rate: int = SAMPLE_RATE):
@@ -96,6 +97,12 @@ async def create_speech(request: TTSRequest):
         raise HTTPException(
             status_code=400,
             detail=f"Unsupported format. Supported: {', '.join(supported_formats)}"
+        )
+
+    if request.stream_format != "audio":
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unsupported stream format. Supported: audio"
         )
 
     # Map voice to available voice
